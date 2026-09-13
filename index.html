@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MŁOT MEBLE - Fabryka Mebli | Od 1993 roku</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://images.unsplash.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+<style>
+:root{--green:#009a44;--green-dark:#007a35;--yellow:#ffed00;--dark:#1a1a1a;--gray:#f4f6f8;--text:#333333}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Open Sans',sans-serif}
+h1,h2,h3,h4,.logo-text{font-family:'Montserrat',sans-serif}
+html,body{width:100%;max-width:100%;overflow-x:hidden;background:#fff;color:var(--text);line-height:1.6;scroll-behavior:smooth}
+#loader{position:fixed;inset:0;background:#fff;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .3s ease,visibility .3s;will-change:opacity}
+.loader-brand{text-align:center;margin-bottom:15px;display:flex;flex-direction:column;align-items:center}
+.loader-logo{max-width:200px;height:auto;margin-bottom:10px;object-fit:contain}
+.loader-brand h1{font-size:1.8rem;color:var(--green);font-weight:800;letter-spacing:1px;margin:0}
+.loader-brand p{font-size:.8rem;color:#666;text-transform:uppercase;letter-spacing:2px;margin-top:2px}
+.loader-spinner{width:35px;height:35px;border:3px solid #e0e0e0;border-top:3px solid var(--green);border-radius:50%;animation:spin .6s linear infinite}
+@keyframes spin{100%{transform:rotate(360deg)}}
+header{position:sticky;top:0;width:100%;background:rgba(255,255,255,.98);backdrop-filter:blur(8px);box-shadow:0 2px 10px rgba(0,0,0,.05);z-index:1000}
+nav{max-width:1200px;margin:0 auto;padding:10px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo-box{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-img{height:38px;width:auto;object-fit:contain}
+.logo-text{font-size:1.3rem;font-weight:800;color:var(--green);line-height:1}
+.logo-sub{font-size:.68rem;color:#666;display:block;font-weight:600;margin-top:2px}
+.nav-links{display:flex;gap:20px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--dark);font-weight:600;transition:color .2s}
+.nav-links a:hover{color:var(--green)}
+#home{width:100%;min-height:80vh;background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),url('L1.jpg') center/cover no-repeat;color:#fff;text-align:center;padding:120px 20px;display:flex;justify-content:center;align-items:center}
+.hero-content{max-width:800px;margin:0 auto}
+.hero-content h1{font-size:2.5rem;font-weight:800;margin-bottom:15px;color:#fff}
+.hero-content p{font-size:1.1rem;max-width:650px;margin:0 auto 25px;color:#e0e0e0}
+.hero-btn{background:var(--green);color:#fff;padding:12px 30px;border-radius:4px;text-decoration:none;font-weight:700;display:inline-block;transition:background .2s ease,transform .2s ease}
+.hero-btn:hover{background:var(--green-dark);transform:translateY(-2px)}
+.features-bar{background:var(--dark);color:#fff;padding:25px 20px;width:100%}
+.f-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;text-align:center}
+.f-item i{font-size:1.8rem;color:var(--yellow);margin-bottom:8px}
+.f-item h4{font-size:1rem}
+.f-item p{font-size:.8rem;color:#aaa}
+section{max-width:1200px;margin:0 auto;padding:50px 20px}
+.section-title{text-align:center;margin-bottom:30px}
+.section-title h2{font-size:2rem;color:var(--dark)}
+.section-title div{width:50px;height:3px;background:var(--green);margin:8px auto 0}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;align-items:center}
+.about-img img{width:100%;border-radius:8px;height:auto}
+.about-text p{margin-bottom:12px;color:#555}
+.about-badge{display:inline-block;background:rgba(0,154,68,.1);color:var(--green);padding:4px 10px;border-radius:15px;font-weight:700;font-size:.8rem;margin-bottom:10px}
+.collections-menu{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:25px}
+.c-btn{background:var(--gray);border:1px solid #e0e0e0;padding:8px 16px;border-radius:20px;font-weight:600;cursor:pointer;transition:.2s}
+.c-btn.active,.c-btn:hover{background:var(--green);color:#fff;border-color:var(--green)}
+.coll-header{background:#f9f9f9;padding:15px;border-left:4px solid var(--green);margin-bottom:20px;border-radius:0 6px 6px 0}
+.coll-header h3{font-size:1.3rem;color:var(--dark)}
+.coll-header p{color:#666;font-size:.9rem;margin-top:4px}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:15px}
+.item-card{background:#fff;border-radius:6px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:transform .2s;cursor:pointer;border:1px solid #eee}
+.item-card:hover{transform:translateY(-3px)}
+.img-box{position:relative;height:200px;overflow:hidden;background:#eee}
+.img-box img{width:100%;height:100%;object-fit:cover}
+.zoom-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;opacity:0;transition:opacity .2s;background:rgba(0,0,0,.3)}
+.item-card:hover .zoom-overlay{opacity:1}
+.item-info{padding:12px;text-align:center}
+.item-symbol{font-weight:800;color:var(--green);font-size:1rem}
+.item-desc{font-size:.85rem;color:#666;margin-top:3px}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:10000;display:none;justify-content:center;align-items:center}
+.lightbox.is-open{display:flex}
+.lightbox-img-wrapper{width:90vw;height:80vh;overflow:auto;display:flex;justify-content:center;align-items:center}
+.lightbox img{max-width:80vw;max-height:75vh;width:auto;height:auto;transition:transform .2s ease;transform-origin:center center;cursor:zoom-in}
+.lightbox-controls{position:absolute;top:15px;right:15px;display:flex;gap:10px;z-index:10001}
+.lb-btn{background:rgba(255,255,255,.2);color:#fff;border:none;width:40px;height:40px;border-radius:50%;font-size:1.1rem;cursor:pointer;backdrop-filter:blur(4px)}
+.lb-btn:hover{background:var(--green)}
+.lb-caption{position:absolute;bottom:20px;color:#fff;font-size:1rem;font-weight:600;background:rgba(0,0,0,.7);padding:6px 16px;border-radius:15px}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}
+.contact-info{display:flex;flex-direction:column;gap:15px}
+.info-card{display:flex;align-items:center;gap:12px;background:var(--gray);padding:15px;border-radius:6px}
+.info-card i{font-size:1.3rem;color:var(--green);width:25px;text-align:center}
+.map-box{height:320px;border-radius:6px;overflow:hidden}
+footer{background:var(--dark);color:#888;text-align:center;padding:20px;font-size:.85rem;width:100%}
+</style>
+</head>
+<body>
+<div id="loader">
+<div class="loader-brand">
+<img src="logo.jpg" alt="Młot Meble Logo" class="loader-logo" onerror="this.style.display='none'">
+<h1>MŁOT MEBLE</h1>
+<p>Fabryka Mebli od 1993 roku</p>
+</div>
+<div class="loader-spinner"></div>
+</div>
+<header>
+<nav>
+<a href="#" class="logo-box">
+<img src="logo.jpg" alt="Logo" class="nav-logo-img" onerror="this.style.display='none'">
+<div>
+<span class="logo-text">FABRYKA MEBLI</span>
+<span class="logo-sub">MŁOT MEBLE</span>
+</div>
+</a>
+<ul class="nav-links">
+<li><a href="#about">O nas</a></li>
+<li><a href="#oferta">Kolekcje</a></li>
+<li><a href="#kontakt">Kontakt</a></li>
+</ul>
+</nav>
+</header>
+<section id="home">
+<div class="hero-content">
+<h1>Solidne Meble dla Twojego Domu</h1>
+<p>Polski producent mebli mieszkaniowych z wieloletnią tradycją. Sprawdź naszą najnowszą ofertę i wyposaż swoje wnętrze ze smakiem.</p>
+<a href="#oferta" class="hero-btn">Zobacz ofertę</a>
+</div>
+</section>
+<div class="features-bar">
+<div class="f-grid">
+<div class="f-item"><i class="fa-solid fa-award"></i><h4>Od 1993 roku</h4><p>Ponad 30 lat doświadczenia</p></div>
+<div class="f-item"><i class="fa-solid fa-layer-group"></i><h4>Płyt laminowana 18 mm</h4><p>Wytrzymałość i wysoka jakość</p></div>
+<div class="f-item"><i class="fa-solid fa-truck-fast"></i><h4>100% Polska Produkcja</h4><p>Słupia pod Bralinem</p></div>
+<div class="f-item"><i class="fa-solid fa-swatchbook"></i><h4>Realizacja</h4><p>10000+</p></div>
+</div>
+</div>
+<section id="about" class="about-hero-section">
+<img src="Gl.png" alt="Fabryka Mebli Młot" class="about-bg-img">
+<div class="about-overlay"></div>
+<div class="about-content">
+<span class="about-badge">Polski Producent Mebli</span>
+<h2>Tworzymy meble z pasją i precyzją od pokoleń</h2>
+<p>Fabryka Mebli <strong>Młot Meble</strong> to dynamicznie rozwijająca się polska firma z wieloletnią tradycją. Od samego początku stawiamy na najwyższą jakość wykonania, dbałość o detale oraz nowoczesne wzornictwo, które idealnie wpisuje się w potrzeby każdego wnętrza.</p>
+<p>Specjalizujemy się w produkcji mebli mieszkaniowych – od systemowych mebli do salonu i sypialni, po funkcjonalne meble tapicerowane. Łączymy tradycyjne rzemiosło z nowoczesnym parkiem maszynowym, co pozwala nam dostarczać produkty trwałe, solidne i funkcjonalne.</p>
+<div class="about-features-list">
+<div class="af-item"><i class="fas fa-check-circle"></i><span>Sprawdzone materiały i solidne wykonanie</span></div>
+<div class="af-item"><i class="fas fa-check-circle"></i><span>Nowoczesny design dostosowany do trendów</span></div>
+<div class="af-item"><i class="fas fa-check-circle"></i><span>Szeroki wybór wykończeń i tkanin</span></div>
+</div>
+<div class="about-experience-badge"><span class="exp-years">30+</span><span class="exp-text">Lat tradycji i doświadczenia</span></div>
+</div>
+</section>
+<section id="oferta" class="catalog-section">
+<div class="catalog-inner">
+<div class="section-title catalog-title">
+<span class="catalog-kicker"></span>
+<h2>Katalog Kolekcji</h2>
+<div></div>
+<p>Wybierz kolekcję i przeglądaj jej produkty jak w nowoczesnym showroomie.</p>
+</div>
+<div class="collection-select-wrap">
+<label for="collection-select">Wybierz kolekcję</label>
+<select id="collection-select" onchange="loadCollection(this.value,this)">
+<option value="lolly">LOLLY</option>
+<option value="moa">MOA</option>
+<option value="milo">MILO</option>
+<option value="linea">LINEA</option>
+<option value="kris">KRIS</option>
+<option value="newada">NEWADA</option>
+<option value="mezo">MEZO</option>
+<option value="parys">PARYS</option>
+<option value="sonia">SONIA</option>
+<option value="amber">AMBER</option>
+<option value="venus">VENUS</option>
+<option value="diana">DIANA</option>
+<option value="dani">DANI</option>
+<option value="cleo">CLEO</option>
+</select>
+</div>
+<div class="coll-header" id="coll-header"></div>
+<div class="showroom" id="showroom">
+<button class="showroom-arrow showroom-prev" id="prevProduct" onclick="changeProduct(-1)" aria-label="Poprzednie zdjęcie"><i class="fa-solid fa-chevron-left"></i></button>
+<div class="showroom-main">
+<div class="showroom-photo-wrap" id="showroomPhotoWrap" onclick="openCurrentLightbox()">
+<img id="showroom-img" src="" alt="Produkt Młot Meble">
+<div class="photo-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Kliknij, aby powiększyć</div>
+</div>
+<div class="showroom-info">
+<div>
+<span class="product-counter" id="product-counter">1 / 1</span>
+<h3 id="showroom-name">Produkt</h3>
+<p id="showroom-desc"></p>
+</div>
+<div class="showroom-controls">
+<div class="slide-dots" id="slide-dots"></div>
+</div>
+</div>
+</div>
+<button class="showroom-arrow showroom-next" id="nextProduct" onclick="changeProduct(1)" aria-label="Następne zdjęcie"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+</div>
+</section>
+<div class="lightbox" id="lightbox">
+<button class="lb-close" onclick="closeLightbox()" aria-label="Zamknij"><i class="fa-solid fa-xmark"></i></button>
+<button class="lb-nav lb-prev" onclick="changeLightbox(-1)" aria-label="Poprzednie zdjęcie"><i class="fa-solid fa-chevron-left"></i></button>
+<div class="lightbox-content">
+<div class="lightbox-counter" id="lb-counter">1 / 1</div>
+<div class="lightbox-img-wrapper" id="lb-wrapper"><img id="lb-img" src="" alt="Powiększenie"></div>
+<div class="lb-caption" id="lb-caption"></div>
+<div class="lightbox-tools">
+<button class="lb-tool" onclick="zoomImage(-.2)" title="Oddal"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+<button class="lb-tool" onclick="zoomImage(.2)" title="Przybliż"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+<button class="lb-tool" onclick="resetZoom()" title="Resetuj"><i class="fa-solid fa-rotate-left"></i></button>
+</div>
+</div>
+<button class="lb-nav lb-next" onclick="changeLightbox(1)" aria-label="Następne zdjęcie"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+<section id="kontakt">
+<div class="section-title"><h2>Kontakt i Lokalizacja</h2><div></div></div>
+<div class="contact-grid">
+<div class="contact-info">
+<div class="info-card"><i class="fa-solid fa-location-dot"></i><div><strong>Siedziba i Fabryka:</strong><br>"MŁOT-MEBLE" Wiesław Młot<br>Słupia pod Bralinem 108<br>63-642 Słupia pod Bralinem<br></div></div>
+<div class="info-card"><i class="fa-solid fa-phone"></i><div><strong>Telefon:</strong> +48 62 786 13 24</div></div>
+<div class="info-card"><i class="fa-solid fa-envelope"></i><div><strong>E-mail:</strong> mlotmeble@gmail.com</div></div>
+<div class="info-card"><i class="fa-solid fa-id-card"></i><div><strong>NIP:</strong> 6190012296</div></div>
+</div>
+<div class="map-box">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.504285145785!2d17.8023181!3d51.287576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4710090de6db6d4f%3A0xbd4f85596921dac9!2sMeble-M%C5%82ot.%20M%C5%82ot%20W.!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</div>
+</div>
+</section>
+<section class="catalog-download">
+<div class="catalog-download-inner">
+<span class="catalog-kicker"></span>
+<h2>Pobierz nasz katalog</h2>
+<p>Zapoznaj się z pełną ofertą naszych kolekcji.</p>
+<a href="Młot Meble Katalog Luty 2026.pdf" download class="catalog-download-btn">
+<i class="fa-solid fa-file-pdf"></i>
+POBIERZ KATALOG PDF
+</a>
+</div>
+</section>
+<footer><span>2026 Młot Meble</span><span>By Jędrzej Młot</span></footer>
+<script>
+window.addEventListener('DOMContentLoaded',()=>{const loader=document.getElementById('loader');if(loader){loader.style.opacity='0';setTimeout(()=>loader.style.display='none',300)}});
+const collectionsData={
+lolly:{title:"Łóżko LOLLY",desc:"Przytulne łóżko tapicerowane.",items:[
+{symbol:"Łóżko Lolly Aranżacja",desc:"",img:"LOA.png"},
+{symbol:"Łóżko Lolly Zamknięte",desc:"",img:"LZ.png"},
+{symbol:"Łóżko Lolly Otwarte",desc:"",img:"LO.png"}]},
+moa:{title:"Łóżko MOA",desc:"Minimalistyczna elegancja w nowoczesnym wydaniu.",items:[
+{symbol:"Łóżko MOA Aranżacja",desc:"",img:"MAA.png"},
+{symbol:"Łóżko MOA Zamknięte",desc:"",img:"MZ.png"},
+{symbol:"Łóżko MOA Otwarte",desc:"",img:"MO.png"}]},
+milo:{title:"Narożnik MILO",desc:"Nowoczesny komfort w dobrym stylu.",items:[
+{symbol:"Narożnik Milo Aranżacja",desc:"",img:"MLAZ.png"},
+{symbol:"Narożnik Milo Złożony",desc:"",img:"MLZ.png"},
+{symbol:"Narożnik Milo Aranżacja",desc:"",img:"MLAR.png"},
+{symbol:"Narożnik Milo Rozłożony",desc:"",img:"MLR.png"}]},
+linea:{title:"Kolekcja Linea",desc:"Kaszmirowa elegancja na co dzień.",items:[
+{symbol:"",desc:"Linea Sypialnia",img:"LAS.jpg"},
+{symbol:"",desc:"Linea salon",img:"LASL.jpg"},
+{symbol:"LA-1",desc:"sz. 160cm, wys. 195cm, gł. 55cm",img:"LA1.png"},
+{symbol:"LA-2",desc:"sz. 96cm, wys. 195cm, gł. 55cm",img:"LA2.jpg"},
+{symbol:"LA-3",desc:"sz. 90cm, wys. 195cm, gł. 36cm",img:"LA3.png"},
+{symbol:"LA-4",desc:"sz. 160cm, wys. 98cm, gł. 41cm",img:"LA4.png"},
+{symbol:"LA-5",desc:"sz. 160cm, wys. 54cm, gł. 41cm",img:"LA5.png"},
+{symbol:"LA-6",desc:"sz. 45cm, wys. 47cm, gł. 41cm",img:"LA6.png"},
+{symbol:"LA-7",desc:"sz. 45cm, wys. 40cm, gł. 41cm",img:"LA7.png"},
+{symbol:"LA-8",desc:"sz. 105cm, wys. 48cm, gł. 60cm",img:"LA8.png"}]},
+kris:{title:"Kolekcja KRIS",desc:"Dąb Wotan z czarnymi lamelami z płyty 18 mm. Do salonu i sypialni.",items:[
+{symbol:"",desc:"Kris salon",img:"KRS.png"},
+{symbol:"KR-1 Szafa",desc:"sz. 196cm, wys. 200cm, gł. 58cm",img:"K1.png"},
+{symbol:"KR-2 Regał",desc:"sz. 90cm, wys. 200cm, gł. 35cm",img:"K2.png"},
+{symbol:"KR-3 Komoda",desc:"sz. 160cm, wys. 89cm, gł. 44cm",img:"K3.png"},
+{symbol:"KR-4 Komoda",desc:"sz. 125cm, wys. 89cm, gł. 44cm",img:"K4.jpg"},
+{symbol:"KR-5 Szafka RTV",desc:"sz. 160cm, wys. 50cm, gł. 38cm",img:"K5.png"},
+{symbol:"KR-6 Ława",desc:"sz. 110cm, wys. 50cm, gł. 65cm",img:"K6.png"},
+{symbol:"KR-7 Stolik nocny",desc:"sz. 45cm, wys. 48cm, gł. 37cm",img:"K7.png"},
+{symbol:"KR-7L Stolik nocny",desc:"sz. 45cm, wys. 48cm, gł. 37cm",img:"K7L.png"},
+{symbol:"KR-9 Garderoba",desc:"sz. 148cm, wys. 190cm",img:"K9.png"},
+{symbol:"KR-10 Szafa",desc:"sz. 96cm, wys. 200cm, gł. 50cm",img:"K10.png"}]},
+newada:{title:"Kolekcja NEWADA",desc:"Rozbudowany system komód, witryn i szaf.",items:[
+{symbol:"NW-1 Witryna",desc:"Witryna przeszklona z oświetleniem",img:"https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=70"},
+{symbol:"NW-2 Komoda",desc:"Komoda 4-szufladowa dąb dziki",img:"https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=600&q=70"},
+{symbol:"NW-4 Szafa 2D",desc:"Klasyczna szafa ubraniowa",img:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=70"}]},
+mezo:{title:"System MEZO",desc:"Nowoczesne modułowe zestawy do pokojów dziennych.",items:[
+{symbol:"MZ-1 RTV",desc:"Szafka RTV z cichym domykiem",img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=70"},
+{symbol:"MZ-3 Witryna",desc:"Wysoki słup przeszklony",img:"https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=70"},
+{symbol:"MZ-5 Komoda",desc:"Komoda pojemna z półkami",img:"https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=600&q=70"}]},
+parys:{title:"System PARYS",desc:"Elegancja i proste formy w odcieniach dębu i sosny.",items:[
+{symbol:"PR-1 Witryna",desc:"Witryna w kolorze Dąb Stirling",img:"https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=70"},
+{symbol:"PR-2 Komoda",desc:"Komoda w wybarwieniu Sosna Śnieżna",img:"https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=600&q=70"},
+{symbol:"PR-6 Stół",desc:"Stolik kawowy rozkładany",img:"https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=600&q=70"}]},
+sonia:{title:"Kolekcja SONIA",desc:"Jasne meble idealne do biura i sypialni.",items:[
+{symbol:"SN-1 Biurko",desc:"Biurko gabinetowe z szufladami",img:"https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=600&q=70"},
+{symbol:"SN-2 Regał",desc:"Regał na książki i dokumenty",img:"https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=600&q=70"}]},
+amber:{title:"System AMBER",desc:"Ciepłe odcienie drewna tworzące domową atmosferę.",items:[
+{symbol:"AM-1 Meblościanka",desc:"Zestaw do salonu AMBER",img:"https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=70"},
+{symbol:"AM-3 Komoda",desc:"Komoda 3-drzwiowa",img:"https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=600&q=70"}]},
+venus:{title:"Kolekcja VENUS",desc:"Wygodna i przytulna sypialnia.",items:[
+{symbol:"VN-1 Łóżko 160",desc:"Łóżko dwuosobowe",img:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=70"},
+{symbol:"VN-2 Stolik Nocny",desc:"Szafka nocna z szufladą",img:"https://images.unsplash.com/photo-1532323544230-7191fd51bc1b?auto=format&fit=crop&w=600&q=70"},
+{symbol:"VN-4 Szafa Narożna",desc:"Pojemna szafa narożna",img:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=70"}]},
+diana:{title:"Kolekcja DIANA",desc:"Klasyczne meble pokojowe o bogatym wykończeniu.",items:[
+{symbol:"DN-1 Witryna 2D",desc:"Witryna ze szklanymi półkami",img:"https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=70"},
+{symbol:"DN-3 Komoda RTV",desc:"Szafka pod telewizor",img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=70"}]},
+dani:{title:"System DANI",desc:"Nowoczesne, kompaktowe meble modułowe.",items:[
+{symbol:"DA-1 Komoda",desc:"Komoda wysoka z szufladami",img:"https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=600&q=70"},
+{symbol:"DA-2 Półka Wisząca",desc:"Półka ścienna",img:"https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=600&q=70"}]},
+cleo:{title:"Kolekcja CLEO 1",desc:"Bestsellerowy zestaw mebli pokojowych.",items:[
+{symbol:"CL-1 Meblościanka",desc:"Zestaw mebli dziennych CLEO 1",img:"https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=70"},
+{symbol:"CL-2 Szafa",desc:"Szafa ubraniowa dwudrzwiowa",img:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=70"}]}
+};
+let currentCollection='lolly';
+let currentIndex=0;
+let currentScale=1;
+const showroomImg=document.getElementById('showroom-img');
+const showroomName=document.getElementById('showroom-name');
+const showroomDesc=document.getElementById('showroom-desc');
+const productCounter=document.getElementById('product-counter');
+const slideDots=document.getElementById('slide-dots');
+const collHeader=document.getElementById('coll-header');
+const lightbox=document.getElementById('lightbox');
+const lbImg=document.getElementById('lb-img');
+const lbCaption=document.getElementById('lb-caption');
+const lbCounter=document.getElementById('lb-counter');
+function loadCollection(key,btnElement){
+currentCollection=key;
+currentIndex=0;
+if(btnElement){document.querySelectorAll('.c-btn').forEach(b=>b.classList.remove('active'));btnElement.classList.add('active')}
+const data=collectionsData[key];
+if(!data||!data.items.length)return;
+collHeader.innerHTML=`<div><span class="coll-label">KOLEKCJA</span><h3>${data.title}</h3><p>${data.desc}</p></div><span class="collection-total">${data.items.length} zdjęcia</span>`;
+renderDots();
+renderProduct();
+}
+function renderProduct(){
+const data=collectionsData[currentCollection];
+const item=data.items[currentIndex];
+if(!item)return;
+showroomImg.classList.add('is-changing');
+setTimeout(()=>{
+showroomImg.src=item.img;
+showroomImg.alt=item.symbol||data.title;
+showroomName.textContent=item.symbol||data.title;
+showroomDesc.textContent=item.desc||'';
+productCounter.textContent=`${currentIndex+1} / ${data.items.length}`;
+lbCounter.textContent=`${currentIndex+1} / ${data.items.length}`;
+updateDots();
+showroomImg.classList.remove('is-changing');
+},120);
+document.getElementById('prevProduct').disabled=data.items.length<=1;
+document.getElementById('nextProduct').disabled=data.items.length<=1;
+}
+function renderDots(){
+const data=collectionsData[currentCollection];
+slideDots.innerHTML='';
+data.items.forEach((_,index)=>{
+const dot=document.createElement('button');
+dot.className='slide-dot';
+dot.setAttribute('aria-label',`Zdjęcie ${index+1}`);
+dot.onclick=()=>{currentIndex=index;renderProduct()};
+slideDots.appendChild(dot);
+});
+}
+function updateDots(){
+slideDots.querySelectorAll('.slide-dot').forEach((dot,index)=>{dot.classList.toggle('active',index===currentIndex)});
+}
+function changeProduct(direction){
+const data=collectionsData[currentCollection];
+if(!data||data.items.length<2)return;
+currentIndex=(currentIndex+direction+data.items.length)%data.items.length;
+renderProduct();
+}
+function openCurrentLightbox(){
+const data=collectionsData[currentCollection];
+const item=data.items[currentIndex];
+if(!item)return;
+openLightbox(item.img,item.symbol||data.title);
+}
+function openLightbox(imgSrc,captionText){
+lbImg.src=imgSrc;
+lbCaption.textContent=captionText||'';
+currentScale=1;
+lbImg.style.transform='scale(1)';
+lbCounter.textContent=`${currentIndex+1} / ${collectionsData[currentCollection].items.length}`;
+lightbox.classList.add('is-open');
+document.body.classList.add('lightbox-open');
+}
+function closeLightbox(){
+lightbox.classList.remove('is-open');
+document.body.classList.remove('lightbox-open');
+resetZoom();
+}
+function changeLightbox(direction){
+const data=collectionsData[currentCollection];
+if(!data||data.items.length<2)return;
+currentIndex=(currentIndex+direction+data.items.length)%data.items.length;
+const item=data.items[currentIndex];
+openLightbox(item.img,item.symbol||data.title);
+}
+function zoomImage(amount){
+if(!lightbox.classList.contains('is-open'))return;
+currentScale=Math.min(4,Math.max(1,currentScale+amount));
+lbImg.style.transform=`scale(${currentScale})`;
+lbImg.style.cursor=currentScale>1?'zoom-out':'zoom-in';
+}
+function resetZoom(){
+currentScale=1;
+lbImg.style.transform='scale(1)';
+lbImg.style.cursor='zoom-in';
+}
+document.addEventListener('keydown',e=>{
+if(!lightbox.classList.contains('is-open'))return;
+if(e.key==='Escape')closeLightbox();
+if(e.key==='ArrowLeft')changeLightbox(-1);
+if(e.key==='ArrowRight')changeLightbox(1);
+if(e.key==='+'||e.key==='=')zoomImage(.2);
+if(e.key==='-')zoomImage(-.2);
+});
+lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox()});
+document.getElementById('lb-wrapper').addEventListener('wheel',e=>{
+e.preventDefault();
+zoomImage(e.deltaY<0?.2:-.2);
+},{passive:false});
+lbImg.addEventListener('dblclick',()=>{
+if(currentScale===1)zoomImage(1);
+else resetZoom();
+});
+let touchStartX=0;
+let touchStartY=0;
+let touchStartTime=0;
+document.getElementById('showroomPhotoWrap').addEventListener('touchstart',e=>{
+const t=e.changedTouches[0];
+touchStartX=t.clientX;
+touchStartY=t.clientY;
+touchStartTime=Date.now();
+},{passive:true});
+document.getElementById('showroomPhotoWrap').addEventListener('touchend',e=>{
+const t=e.changedTouches[0];
+const dx=t.clientX-touchStartX;
+const dy=t.clientY-touchStartY;
+const duration=Date.now()-touchStartTime;
+if(duration<700&&Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))changeProduct(dx<0?1:-1);
+},{passive:true});
+loadCollection('lolly',document.querySelector('.c-btn.active'));
+</script>
+</body>
+</html>
